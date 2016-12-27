@@ -79,7 +79,7 @@
             </div>
             <div class="col-md-2">
                 <div class="big-price"><h1 ng-show="lowestPrice!==null" class="big-price-number orange-text lato">
-                    <strong>${{lowestPrice.toFixed(2)}}</strong></h1></div>
+                    <strong>£{{lowestPrice.toFixed(2)}}</strong></h1></div>
             </div>
 
 
@@ -374,7 +374,7 @@
                 <td ng-show="deal.bookPaymentMethodCashOnExchange && deal.bookPaymentMethodCheque">
                     Cash, Cheque
                 </td>
-                <td>${{deal.bookPriceSell}}</td>
+                <td>£{{deal.bookPriceSell}}</td>
                 <td>
                     <div ng-show="$parent.loggedIn">
                         <button ng-click="contact(deal)" class="myBtn app-btn buy-now-button ">

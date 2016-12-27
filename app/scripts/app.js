@@ -104,10 +104,10 @@ var app = angular
     }])
     .config(function() {
         var config = {
-            apiKey: "AIzaSyB_khisCo1mguYbbPKUM6Ugfc_i74kWa50",
-            authDomain: "student2student-31e72.firebaseapp.com",
-            databaseURL: "https://student2student-31e72.firebaseio.com",
-            storageBucket: "student2student-31e72.appspot.com"
+            apiKey: "AIzaSyBt6xW_YAKwAPEHP7j397IVfr5a1MzwaGA",
+            authDomain: "student2studentuk.firebaseapp.com",
+            databaseURL: "https://student2studentuk.firebaseio.com",
+            storageBucket: "student2studentuk.appspot.com"
         };
         firebase.initializeApp(config);
     })
@@ -116,8 +116,8 @@ var app = angular
         uiSelectConfig.theme = 'bootstrap';
     }])
     .config(['vcRecaptchaServiceProvider',function(vcRecaptchaServiceProvider){
-        vcRecaptchaServiceProvider.setSiteKey('6LeMeykTAAAAAHDayXgyff_OX7erYAnPoUKnLrR-')
-        vcRecaptchaServiceProvider.setTheme('dark')
+        vcRecaptchaServiceProvider.setSiteKey('6LeMeykTAAAAAHDayXgyff_OX7erYAnPoUKnLrR-');
+        vcRecaptchaServiceProvider.setTheme('dark');
     }])
 
 
@@ -168,7 +168,7 @@ var app = angular
             authCheckNormal: function() {
                 return authCheckerServiceProvider.$get().checkIfLoggedInNormal();
             }
-        }
+        };
 
 
         $urlRouterProvider

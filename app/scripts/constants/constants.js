@@ -4,9 +4,9 @@
 
     app
         .constant("SERVER_CONSTANT", {
-            "HOST": "http://localhost:8080/Student2StudentApi/web/app_dev.php",
-            "HOST_APP": "http://localhost:8080/Student2StudentApp/app",
-            "IMAGE_HOST_PATH": "./../../Student2StudentApi/web"
+            "HOST": "http://localhost:8080/Student2StudentApiUk/web/app_dev.php",
+            "HOST_APP": "http://localhost:8080/Student2StudentAppUk/app",
+            "IMAGE_HOST_PATH": "./../../Student2StudentApiUk/web"
 //            "HOST":"http://test.student2student.com/api/web",
 //            "HOST_APP" : "http://test.student2student.com",
 //            "IMAGE_HOST_PATH":"./api/web"

@@ -167,7 +167,7 @@
                                                 <button ng-show="deal.dealType=='contactedDeal'" class="myBtn orange-btn message-board-btn" ui-sref="app.contactedBookList">Go to Deal</button>
                                                 <button ng-show="deal.dealType=='sellingDeal'" class="myBtn orange-btn message-board-btn" ui-sref="app.sellingBookList">Go to Deal</button>
 
-                                                <text  class="price-text convert-to-white-text orange-text float-right">${{deal.bookPriceSell}}</text>
+                                                <text  class="price-text convert-to-white-text orange-text float-right">£{{deal.bookPriceSell}}</text>
                                             </dd>
 
                                         </dl>
@@ -218,7 +218,7 @@
                                     </div>
                                     <div class="col-md-2 col-sm-2 col-xs-2 no-left-padding no-right-padding book-price-message-board">
                                         <div class="item-price">
-                                            <text class="text-white lato">Price: ${{deal.bookPriceSell}}</text>
+                                            <text class="text-white lato">Price: £{{deal.bookPriceSell}}</text>
                                         </div>
                                     </div>
 
