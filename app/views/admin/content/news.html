@@ -44,7 +44,7 @@
 
                     <td data-title="'Image'"  width="250">
 
-                        <div class="search-book-image-carousel">
+                        <div ng-show="news.newsType=='imageType'" class="search-book-image-carousel">
 
 
                             <uib-carousel interval="myInterval" no-wrap="noWrapSlides">
@@ -70,6 +70,16 @@
                                 class="fa fa-angle-right fa-3x"></i></a></span>
                             </div>
                         </div>
+
+                        <!--<div ng-show="news.newsType=='videoType'">
+                            <div ng-bind-html="news.newsVideoEmbedCode"></div>
+                        </div>-->
+
+                        <div ng-show="news.newsType=='videoType'">
+                            <div class="video-div"  ng-bind-html="news.newsVideoEmbedCode"></div>
+
+                        </div>
+
                     </td>
 
                     <td data-title="'News Title'" width="200"  filter="{ 'newsTitle': 'text' }">
@@ -90,7 +100,8 @@
 
                     <td data-title="'Details'" >
 
-                        <span  ng-if="!news.$edit" ng-bind-html="news.newsDescription"></span>
+                        <!--<span  ng-if="!news.$edit" ng-bind-html="news.newsDescription"></span>-->
+                        <div ng-if="!news.$edit" ta-bind="text" ng-model="news.newsDescription" ta-readonly='disabled'></div>
 
                         <div ng-if="news.$edit"
                              ng-class="{ 'has-error' : editRowForm.newsDescription.$invalid && !editRowForm.newsDescription.$pristine, 'has-success' : editRowForm.newsDescription.$valid && !editRowForm.newsDescription.$pristine}">

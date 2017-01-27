@@ -30,6 +30,7 @@
                 </div>
                 <div class="entry-image">
 
+                    <div ng-show="news.newsType=='imageType'">
                     <flex-slider slide="item in news.newsImages track by item.imageId" animation="slide">
                         <li>
                             <div class="slide">
@@ -43,13 +44,19 @@
                             </div>
                         </li>
                     </flex-slider>
+                        </div>
+                    <div ng-show="news.newsType=='videoType'">
+
+                        <div class="video-div video-news-thumbnail"  ng-bind-html="news.newsVideoEmbedCode"></div>
+                    </div>
                 </div>
 
                 <div class="first-news-post">
 
 
                     <div class="entry-content news-details-view">
-                        <p ng-bind-html="news.newsDescription"></p>
+                        <!--<p ng-bind-html="news.newsDescription"></p>-->
+                        <div ta-bind="text" ng-model="news.newsDescription" ta-readonly='disabled'></div>
 
                     </div>
 
@@ -91,7 +98,7 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-6 blog-posts small-news-section" data-ng-repeat="news in alsoLikedNews">
+                <!--<div class="col-sm-6 blog-posts small-news-section" data-ng-repeat="news in alsoLikedNews">
 
                     <article class="news-post post-entry">
 
@@ -121,6 +128,65 @@
 
 
                         </div>
+
+                    </article>
+
+                </div>-->
+
+                <div class="col-sm-6 blog-posts small-news-section" data-ng-repeat="news in alsoLikedNews">
+
+                    <article class="news-post post-entry" >
+
+                        <div class="entry-image">
+                            <div ng-show="news.newsType=='imageType'">
+                            <flex-slider slide="item in news.newsImages track by item.imageId" animation="slide">
+                                <li>
+                                    <div class="slide">
+                                        <div class="media">
+
+                                            <div class="media-body">
+                                                <img src="{{imageHostPath}}{{item.image}}"/>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </flex-slider>
+                                </div>
+                            <div ng-show="news.newsType=='videoType'">
+
+                                <div class="video-div video-news-thumbnail"  ng-bind-html="news.newsVideoEmbedCode"></div>
+                            </div>
+                        </div>
+
+                        <div class="other-news-post">
+                            <div class="entry-title text-center">
+                                <h2><a ui-sref="app.newsDetails({newsId:news.newsId})" class="lato px-25 orange-text">{{news.newsTitle | limitTo:40}}...</a></h2>
+                            </div>
+
+                            <div class="news-date-time-div">
+                                <ul class="entry-meta clearfix text-center">
+                                    <li>{{news.newsDateTime}}</li>
+                                </ul>
+                            </div>
+
+
+                            <!--<div class="entry-content">-->
+                            <!--&lt;!&ndash;<text ng-bind-html="news.newsDescription | limitTo:250 | sanitizeHtml "></text>&ndash;&gt;-->
+                            <!--<div ta-bind="text" ng-model="news.newsDescription" ta-readonly='disabled'></div>-->
+                            <!--</div>-->
+
+                            <div class="text-center continue-reading-button">
+                                <a ui-sref="app.newsDetails({newsId:news.newsId})" class="simple-continue-reading-button lato px-16"><strong>Continue Reading</strong></a>
+                            </div>
+
+
+
+
+                        </div>
+
+
+
 
                     </article>
 
@@ -168,8 +234,12 @@
                     <li class="media" data-ng-repeat="item in latestNews">
                         <div class="media-left">
                             <a href="#">
-                                <img class="media-object" alt=""
+                                <img ng-show="item.newsType=='imageType'" class="media-object" alt=""
                                      ng-src="{{imageHostPath}}{{item.newsImages[0].image}}">
+                                <div ng-show="item.newsType=='videoType'">
+                                    <div class="video-div"  ng-bind-html="item.newsVideoEmbedCode"></div>
+
+                                </div>
                             </a>
                         </div>
                         <div class="media-body">

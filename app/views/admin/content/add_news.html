@@ -23,6 +23,41 @@
                                 </p>
                             </div>
 
+                            <div class="form-group" ng-class="{ 'has-error' : newsForm.newsDateTime.$invalid && !newsForm.newsDateTime.$pristine, 'has-success' : newsForm.newsDateTime.$valid && !newsForm.newsDateTime.$pristine}">
+
+                                <p class="" for="newsDate">News Date: </p>
+                                <p class="input-group">
+                                    <input name="newsDateTime" type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="news.newsDateTime" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                                                          <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-default" ng-click="open1()"><i class="fa fa-calendar"></i></button>
+                                                          </span>
+
+                                </p>
+
+                                <p class="help-block">
+                                    <span  ng-show="newsForm.newsDateTime.$invalid && !newsForm.newsDateTime.$pristine">News Date is Required</span>
+
+                                </p>
+                            </div>
+
+                            <div class="form-group"
+                                 ng-class="{ 'has-error' : newsForm.newsType.$invalid && !newsForm.newsType.$pristine, 'has-success' : newsForm.newsType.$valid && !newsForm.newsType.$pristine}">
+
+                                <p  for="newsType">News Type: </p>
+
+
+                                <select  class="form-control mb-10" ng-options="newsType.id as newsType.label for newsType in newsTypes track by newsType.id" ng-model="news.newsType">
+                                    <option value="">-- Choose News Type --</option>
+                                </select>
+
+
+                                <p class="help-block">
+                                    <span ng-show="newsForm.newsType.$invalid && !newsForm.newsType.$pristine">News Type is required.</span>
+
+                                </p>
+
+                            </div>
+
                             <div class="form-group" ng-class="{ 'has-error' :  newsForm.newsDescription.$invalid && !newsForm.newsDescription.$pristine, 'has-success' : newsForm.newsDescription.$valid && !newsForm.newsDescription.$pristine}">
                                 <p class="" for="newsTitle">News Details: </p>
                                 <text-angular name="newsDescription"  ng-model="news.newsDescription" required ng-model="htmlVariable"></text-angular>
@@ -31,11 +66,17 @@
                                 </p>
                             </div>
 
+                            <div ng-show="news.newsType=='videoType'" class="form-group" ng-class="{ 'has-error' : newsForm.newsVideoEmbedCode.$invalid && !newsForm.newsVideoEmbedCode.$pristine, 'has-success' : newsForm.newsVideoEmbedCode.$valid && !newsForm.newsVideoEmbedCode.$pristine}">
+                                <p class="" for="newsTitle">Youtube Embed Code: </p>
+                                <input type="text" name="newsVideoEmbedCode" id="newsVideoEmbedCode" class="form-control " ng-model="news.newsVideoEmbedCode"  ng-required="news.newsType=='videoType'">
+                                <p class="help-block">
+                                    <span ng-show="newsForm.newsVideoEmbedCode.$invalid && !newsForm.newsVideoEmbedCode.$pristine">Youtube Embed Code is required.</span>
+                                </p>
+                            </div>
 
 
-
-                            <div class="form-group">
-                                <p>News Images: (Recommended dimension: 780px/490px & Recommended Size : less than 200KB)</p>
+                            <div ng-show="news.newsType=='imageType'" class="form-group">
+                                <p>News Images: (Recommended dimension: 780px/490px & Recommended Size : less than 300KB)</p>
                                 <input multiple-image-input="files" file-data="fileData" file-identifier="fileId" ui-jq="filestyle" type="file" class="filestyle" ui-options="{
             buttonText: 'Select file',
             iconName: 'fa fa-inbox'
@@ -43,7 +84,7 @@
 
 
                             </div>
-                            <div  class="form-group">
+                            <div ng-show="news.newsType=='imageType'" class="form-group">
                                 <div class="tcol">
                                     <div class="p-15 bg-white">
 
@@ -86,7 +127,7 @@
 
                                 </div>
                             </div>
-                            <div class="row">
+                            <div  class="row">
                                 <div class="col-md-6">
                                     <button type="submit" class="myBtn app-btn buy-now-button "><i class="fa fa-check"></i>&nbsp;Save News</button>
                                 </div>

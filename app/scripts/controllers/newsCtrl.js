@@ -49,6 +49,9 @@
             ($scope.newsPromise=newsService.getActivatedNews(queryData)).then(function (response) {
 
                 $scope.totalNews = response.data.success.successData.news.totalNews;
+                for(var i = 0;i<$scope.totalNews.length;i++){
+                    $scope.totalNews[i].newsVideoEmbedCode = $sce.trustAsHtml($scope.totalNews[i].newsVideoEmbedCode);
+                }
                 $scope.latestNews = $scope.totalNews.slice(0,3);
                 $scope.firstNews.push($scope.totalNews.shift());
 

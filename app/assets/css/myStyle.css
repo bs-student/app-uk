@@ -834,6 +834,17 @@ a.notification-a.message-board-a i{
     background-color: #FF530D;
     font-family: "Raleway";
 }
+.orange-fade-btn{
+    background-color: #FF8A57;
+    font-family: "Raleway";
+    border: 2px solid #FFFFFF;
+}
+.margin-top-50{
+    margin-top: 50px;
+}
+.white-border-btn{
+    border: 2px solid #FFFFFF;
+}
 .max-large-btn{
     width: 100%;
 }
@@ -1839,6 +1850,9 @@ a.notification-a.message-board-a i{
 /*********************************************/
 .min-height-1150{
     min-height: 1150px;
+}
+.min-height-1300{
+    min-height: 1300px;
 }
 .margin-top-20{
     margin-top: 20px;
@@ -3766,6 +3780,31 @@ a.orange-link:hover,a.orange-link:active,a.orange-link:focus{
 .other-news-post{
     background: #FFFFFF;
     padding: 40px 20px;
+    min-height: 241px;
+}
+.video-news-thumbnail{
+    text-align: center;
+    background: #FFFFFF;
+    height: 230px;
+}
+.video-div{
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    min-height: 230px;
+}
+.video-iframe{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.media-left .video-div{
+    width: 150px;
+    height:89px;
+    min-height:89px;
 }
 a.simple-continue-reading-button{
     color: #555;

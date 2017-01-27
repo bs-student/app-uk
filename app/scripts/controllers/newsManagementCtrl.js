@@ -5,9 +5,9 @@
     app
         .controller('NewsManagementCtrl', NewsManagementCtrl);
 
-    NewsManagementCtrl.$inject = ['$state','identityService', 'adminNewsService', '$scope', '$filter', '$q', 'ngTableParams','responseService','SERVER_CONSTANT','imageModalService'];
+    NewsManagementCtrl.$inject = ['$state','identityService', 'adminNewsService', '$scope', '$filter', '$q', 'ngTableParams','responseService','SERVER_CONSTANT','imageModalService','$sce'];
 
-    function NewsManagementCtrl($state,identityService, adminNewsService, $scope, $filter, $q, ngTableParams,responseService,SERVER_CONSTANT,imageModalService) {
+    function NewsManagementCtrl($state,identityService, adminNewsService, $scope, $filter, $q, ngTableParams,responseService,SERVER_CONSTANT,imageModalService,$sce) {
 
         $scope.imageHostPath = SERVER_CONSTANT.IMAGE_HOST_PATH;
 
@@ -126,6 +126,11 @@
                 };
                 ($scope.newsPromise= adminNewsService.getNews(identityService.getAccessToken(), queryData)).then(function (response) {
                     $scope.totalNews = response.data.success.successData.news.totalNews;
+
+                    for(var i = 0;i<$scope.totalNews.length;i++){
+                        $scope.totalNews[i].newsVideoEmbedCode = $sce.trustAsHtml($scope.totalNews[i].newsVideoEmbedCode);
+                    }
+
                     $scope.totalNews= $filter('orderBy')($scope.totalNews, params.orderBy());
                     $defer.resolve($scope.totalNews);
                     params.total(response.data.success.successData.news.totalNumber);

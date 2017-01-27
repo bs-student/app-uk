@@ -5,9 +5,9 @@
     app
         .controller('NewsDetailsCtrl', NewsDetailsCtrl);
 
-    NewsDetailsCtrl.$inject = ['$stateParams','$state','identityService', 'newsService', '$scope', '$filter', '$q', 'ngTableParams','responseService','SERVER_CONSTANT','imageModalService','SOCIAL_MEDIA_CONSTANT','$location'];
+    NewsDetailsCtrl.$inject = ['$stateParams','$state','identityService', 'newsService', '$scope', '$filter', '$q', 'ngTableParams','responseService','SERVER_CONSTANT','imageModalService','SOCIAL_MEDIA_CONSTANT','$location','$sce'];
 
-    function NewsDetailsCtrl($stateParams,$state,identityService, newsService, $scope, $filter, $q, ngTableParams,responseService,SERVER_CONSTANT,imageModalService,SOCIAL_MEDIA_CONSTANT,$location) {
+    function NewsDetailsCtrl($stateParams,$state,identityService, newsService, $scope, $filter, $q, ngTableParams,responseService,SERVER_CONSTANT,imageModalService,SOCIAL_MEDIA_CONSTANT,$location,$sce) {
 
 
 
@@ -37,7 +37,7 @@
 
         function getSingleNews(newsId){
             ($scope.newsPromise=newsService.getSingleNews({"newsId":newsId})).then(function (response) {
-
+                response.data.success.successData.news.newsVideoEmbedCode = $sce.trustAsHtml(response.data.success.successData.news.newsVideoEmbedCode);
                 $scope.firstNews.push(response.data.success.successData.news);
 
             }).catch(function (response) {
@@ -64,6 +64,10 @@
             newsService.getActivatedNews(queryData).then(function (response) {
 
                 var allNews= response.data.success.successData.news.totalNews;
+                console.log(allNews);
+                for(var i = 0;i<allNews.length;i++){
+                    allNews[i].newsVideoEmbedCode = $sce.trustAsHtml(allNews[i].newsVideoEmbedCode);
+                }
                 $scope.alsoLikedNews = allNews.slice(0,2);
                 $scope.latestNews = allNews.slice(2,5);
 

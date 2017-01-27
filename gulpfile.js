@@ -134,6 +134,7 @@ var assets = {
         "app/scripts/controllers/universityMergeCtrl.js",
         "app/scripts/controllers/logCtrl.js",
         "app/scripts/controllers/databaseCtrl.js",
+        "app/scripts/controllers/conceptVideoSpanishCtrl.js",
 
 
 
