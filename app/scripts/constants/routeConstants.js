@@ -7,16 +7,16 @@
             "HOST": "http://localhost:8080/Student2StudentApiUk/web/app_dev.php",
             "HOST_APP": "http://localhost:8080/Student2StudentAppUk/app",
             "IMAGE_HOST_PATH": "./../../Student2StudentApiUk/web"
-//            "HOST":"http://test.student2student.com/api/web",
-//            "HOST_APP" : "http://test.student2student.com",
+//            "HOST":"http://uktest.student2student.com/api/web",
+//            "HOST_APP" : "http://uktest.student2student.com",
 //            "IMAGE_HOST_PATH":"./api/web"
-//            "HOST":"http://student2student.com/api/web",
-//            "HOST_APP" : "http://student2student.com",
+//            "HOST":"http://student2student.co.uk/api/web",
+//            "HOST_APP" : "http://student2student.co.uk",
 //            "IMAGE_HOST_PATH":"./api/web"
         })
         .constant("API_CLIENT_CONSTANT", {
-            "CLIENT_ID": "1_1t8rtqj36wkgcw4k8wko4wo808ksok0w8wssow4k8sgw08osw8",
-            "CLIENT_SECRET": "3pcvjgjoqekgwgkoc0gss4cggkoo000o40ggc8ok44ksc4ckk0"
+            "CLIENT_ID": "2_50lxf72yzr0gc88s88c0s0k44ckcgcgw08kc8ogkk84ko8gws8",
+            "CLIENT_SECRET": "5fnpb8k2kk4ck4s8ggsk4so4s48skkoc4s804k0ksw8oko44ks"
         })
         .constant("ACCESS_TOKEN_CONSTANT", {
             "PASSWORD_GRANT_TYPE": "password",
@@ -45,6 +45,7 @@
             "APPROVE_USERS": "/api/admin/approve_users",
             "ADD_ADMIN_USER": "/api/admin/add_admin_user",
             "GET_ALL_BOOK_DEALS": "/api/admin/get_all_book_deals",
+            "GET_ALL_SOLD_BOOK_DEALS":"/api/admin/get_all_sold_book_deals",
             "GET_STUDENT_QUOTES": "/api/admin/get_student_quotes",
             "GET_UNIVERSITY_QUOTES": "/api/admin/get_university_quotes",
             "UPDATE_QUOTE": "/api/admin/update_quote",
@@ -65,7 +66,14 @@
             "MERGE_UNIVERSITIES": "/api/admin/merge_universities",
             "GET_LOG":"/api/admin/get_log",
             "GET_ALL_DATABASE_LIST":"/api/admin/get_all_databases",
-            "DOWNLOAD_DATABASE":"/api/admin/download_database"
+            "DOWNLOAD_DATABASE":"/api/admin/download_database",
+
+            "GET_NORMAL_AND_SOCIAL_USER_DATA":"/api/admin/get_all_normal_and_social_user_data",
+            "GET_LOGIN_AND_REGISTRATION_USER_DATA":"/api/admin/get_login_and_registration_user_data",
+            "GET_BOOK_DEAL_AND_CONTACT_DATA":"/api/admin/get_book_deal_and_contact_data",
+            "GET_BOOK_DEAL_METHOD_DATA":"/api/admin/get_book_deal_method_data",
+            "GET_UNIVERSITIES_USER_DATA":"/api/admin/get_universities_user_data",
+            "GET_GOOGLE_ACCESS_TOKEN":"/api/admin/get_google_access_token"
         })
         .constant("QUOTE_CONSTANT", {
             "GET_ACTIVATED_STUDENT_QUOTE": "/quote/get_activated_student_quote",
@@ -113,10 +121,10 @@
         .constant("BOOK_CONSTANT", {
             "SEARCH_AMAZON": "/book/search_by_keyword_amazon",
             "SEARCH_AMAZON_API": "/api/book/search_by_keyword_amazon_api",
-            "GET_LOWEST_ONLINE_PRICE": "/book/get_lowest_price_by_isbn_campus_books",
+            "GET_LOWEST_ONLINE_PRICE": "/book/get_lowest_price_by_isbn_online",
             "GET_BOOK_BY_ASIN_AMAZON": "/book/search_by_asin_amazon",
             "GET_BOOK_BY_ISBN_AMAZON": "/api/book/search_by_isbn_amazon",
-            "GET_BOOK_BY_ISBN_CAMPUS_BOOKS": "/book/search_by_isbn_campus_books",
+            "GET_BOOK_BY_ISBN_ONLINE_BOOKS": "/book/search_by_isbn_online",
             "GET_AMAZON_CART_CREATE_URL": "/book/get_amazon_cart_create_url",
             "GET_CAMPUS_DEALS_BY_ISBN_API": "/api/book/get_campus_deals_by_isbn_api",
             "GET_CAMPUS_DEALS_BY_ISBN": "/book/get_campus_deals_by_isbn",
