@@ -32,10 +32,6 @@
                 'id':"Change Password"
             },
             {
-                'title':"Social Login",
-                'id':"Social Login"
-            },
-            {
                 'title':"Email Notification Change",
                 'id':"Email Notification Change"
             },

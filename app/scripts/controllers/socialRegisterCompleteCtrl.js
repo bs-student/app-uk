@@ -148,6 +148,7 @@
             }
             $scope.$parent.loggedIn = true;
             $scope.$parent.username = response.data.success.successData.username;
+            $scope.$parent.profilePicture = response.data.success.successData.profilePicture;
 
             if($scope.bookId!=undefined){
                 wishListService.addBookToWishList(identityService.getAccessToken(),{bookId:$scope.bookId}).then(function(response){

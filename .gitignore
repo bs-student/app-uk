@@ -5,3 +5,5 @@ dist
 bower_components
 vendor
 app/dist
+.idea
+app/scripts/constants/configConstants.js

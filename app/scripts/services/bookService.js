@@ -14,7 +14,7 @@
             getLowestOnlinePrice:_getLowestOnlinePrice,
             getSingleBookByAsinAmazon:_getSingleBookByAsinAmazon,
             searchBooksByIsbnAmazon:_searchBooksByIsbnAmazon,
-            getSingleBookByIsbnCampusBooks:_getSingleBookByIsbnCampusBooks,
+            getSingleBookByEanOnline:_getSingleBookByEanOnline,
             getAmazonCartCreateUrl:_getAmazonCartCreateUrl,
             getCampusDealsByIsbn: _getCampusDealsByIsbn,
             addSellBook:_addSellBook,
@@ -32,8 +32,8 @@
 
         }
 
-        function _getLowestOnlinePrice(isbn){
-            return apiService.get(SERVER_CONSTANT.HOST+BOOK_CONSTANT.GET_LOWEST_ONLINE_PRICE+"?isbn="+isbn);
+        function _getLowestOnlinePrice(data){
+            return apiService.get(SERVER_CONSTANT.HOST+BOOK_CONSTANT.GET_LOWEST_ONLINE_PRICE+"?isbn="+data.isbn+"&ean="+data.ean);
 
         }
 
@@ -45,8 +45,8 @@
             return apiService.post(SERVER_CONSTANT.HOST+BOOK_CONSTANT.GET_BOOK_BY_ASIN_AMAZON,data);
         }
 
-        function _getSingleBookByIsbnCampusBooks(data){
-            return apiService.post(SERVER_CONSTANT.HOST+BOOK_CONSTANT.GET_BOOK_BY_ISBN_CAMPUS_BOOKS,data);
+        function _getSingleBookByEanOnline(data){
+            return apiService.post(SERVER_CONSTANT.HOST+BOOK_CONSTANT.GET_BOOK_BY_ISBN_ONLINE_BOOKS,data);
         }
 
         function _getAmazonCartCreateUrl(data){

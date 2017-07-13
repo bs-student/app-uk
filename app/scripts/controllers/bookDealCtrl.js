@@ -17,11 +17,13 @@
         $scope.imageHostPath = SERVER_CONSTANT.IMAGE_HOST_PATH;
 
         $scope.bookDeals=[];
+        $scope.soldBookDeals=[];
 
         init();
 
         function init(){
             getAllBookDeals();
+            getAllSoldBookDeals();
         }
         function getAllBookDeals(){
             $scope.bookDealTableParams = new ngTableParams(
@@ -32,18 +34,18 @@
                         bookTitle: ''       // initial filter
                     },
                     sorting: {
-                        bookPriceSell: 'asc'     // initial sorting
+                        bookSubmittedDateTime: 'desc'     // initial sorting
                     }
                 },
 
                 {
                     total: $scope.bookDeals.length, // length of data
-                    getData: getData
+                    getData: getBookDealData
                 });
 
 
 
-            function getData($defer, params) {
+            function getBookDealData($defer, params) {
 
                 var queryData =
                 {
@@ -65,7 +67,7 @@
                     } else if (response.data.error_description == "The access token provided has expired.") {
                         ($scope.adminBookDealPromise = identityService.getRefreshAccessToken(identityService.getRefreshToken())).then(function (response) {
                             identityService.setAccessToken(response.data);
-                            getData($defer, params);
+                            getBookDealData($defer, params);
                         });
                     } else if (response.data.error != undefined) {
                         responseService.showErrorToast(response.data.error.errorTitle, response.data.error.errorDescription);
@@ -78,7 +80,60 @@
             }
         }
 
+        function getAllSoldBookDeals(){
+            $scope.soldBookDealTableParams = new ngTableParams(
+                {
+                    page: 1,            // show first page
+                    count: 10,           // count per page
+                    filter: {
+                        bookTitle: ''       // initial filter
+                    },
+                    sorting: {
+                        bookSubmittedDateTime: 'desc'     // initial sorting
+                    }
+                },
 
+                {
+                    total: $scope.soldBookDeals.length, // length of data
+                    getData: getSoldBookDealData
+                });
+
+
+
+            function getSoldBookDealData($defer, params) {
+
+                var queryData =
+                {
+                    "searchQuery": params.filter().bookTitle,
+                    "pageNumber": params.page(),
+                    "pageSize": params.count(),
+                    "sort":params.sorting()
+                };
+                ($scope.adminSoldBookDealPromise = adminBookDealService.getAllSoldBookDeals(identityService.getAccessToken(), queryData)).then(function (response) {
+                    $scope.soldBookDeals = response.data.success.successData.books.totalBooks;
+                    $scope.soldBookDeals= $filter('orderBy')($scope.soldBookDeals, params.orderBy());
+                    $defer.resolve($scope.soldBookDeals);
+                    params.total(response.data.success.successData.books.totalNumber);
+
+                }).catch(function (response) {
+
+                    if (response.data.error_description == "The access token provided is invalid.") {
+
+                    } else if (response.data.error_description == "The access token provided has expired.") {
+                        ($scope.adminSoldBookDealPromise = identityService.getRefreshAccessToken(identityService.getRefreshToken())).then(function (response) {
+                            identityService.setAccessToken(response.data);
+                            getSoldBookDealData($defer, params);
+                        });
+                    } else if (response.data.error != undefined) {
+                        responseService.showErrorToast(response.data.error.errorTitle, response.data.error.errorDescription);
+
+                    } else {
+                        responseService.showErrorToast("Something Went Wrong", "Please Refresh the page again.")
+                    }
+
+                });
+            }
+        }
 
     }
 

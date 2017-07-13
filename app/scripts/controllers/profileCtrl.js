@@ -5,9 +5,9 @@
     app
         .controller('ProfileCtrl', ProfileCtrl);
 
-    ProfileCtrl.$inject = ['$scope','$state', 'identityService', 'userService', 'responseService', 'universityService', '$log', '$q','SERVER_CONSTANT'];
+    ProfileCtrl.$inject = ['$scope','$state', 'identityService', 'userService', 'responseService', 'universityService', '$log', '$q','SERVER_CONSTANT','storageService'];
 
-    function ProfileCtrl($scope, $state,identityService, userService, responseService, universityService, $log, $q,SERVER_CONSTANT) {
+    function ProfileCtrl($scope, $state,identityService, userService, responseService, universityService, $log, $q,SERVER_CONSTANT,storageService) {
 
         $scope.appHostPath = SERVER_CONSTANT.HOST_APP;
         $scope.imageHostPath = SERVER_CONSTANT.IMAGE_HOST_PATH;
@@ -175,6 +175,22 @@
                     $scope.updatingProfile=false;
                     responseService.showSuccessToast(response.data.success.successTitle, response.data.success.successDescription);
 
+
+
+                    identityService.setAuthorizedUserData({
+                        'campusDisplay':$scope.user.universityName+", "+$scope.user.stateName+", "+$scope.user.stateShortName+", "+response.data.success.successData.countryName,
+                        'campusId':$scope.user.campusId,
+                        'email':identityService.getAuthorizedUserData().email,
+                        'fullName':$scope.user.fullName,
+                        'profilePicture':$scope.user.profilePicture,
+                        'registrationStatus':identityService.getAuthorizedUserData().registrationStatus,
+                        'role':identityService.getAuthorizedUserData().role,
+                        'universityName':$scope.user.universityName,
+                        'username':identityService.getAuthorizedUserData().username
+                    });
+
+                    storageService.setValue('universityCampusDisplay',identityService.getAuthorizedUserData().campusDisplay);
+                    storageService.setValue('universityCampusValue',identityService.getAuthorizedUserData().campusId);
 
                 }).catch(function (response) {
                     if (response.data.error_description == "The access token provided is invalid.") {

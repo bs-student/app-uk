@@ -24,6 +24,7 @@
                 $scope.deal = $stateParams.deal;
                 $scope.asin = $stateParams.asin;
                 $scope.isbn = $stateParams.isbn;
+                $scope.ean = $stateParams.ean;
             }
 
             $scope.contact = {};
@@ -61,12 +62,12 @@
                         "buyerNickName": identityService.getAuthorizedUserData().username
                     });
 
-                    $state.go("app.bookComparePrice",{asin:$scope.asin,isbn:$scope.isbn});
+                    $state.go("app.bookComparePrice",{asin:$scope.asin,isbn:$scope.isbn,ean:$scope.ean});
 
 
                 }).catch(function (response) {
                     responseService.showErrorToast(response.data.error.errorTitle, response.data.error.errorDescription);
-                    $state.go("app.bookComparePrice",{asin:$scope.asin,isbn:$scope.isbn});
+                    $state.go("app.bookComparePrice",{asin:$scope.asin,isbn:$scope.isbn,ean:$scope.ean});
                 });
 
             }

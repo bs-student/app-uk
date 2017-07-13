@@ -46,6 +46,10 @@
                 pageNumber= parseInt($stateParams.pageNumber,10);
                 if(typeof $stateParams.searchQuery == "string" && (pageNumber<100 || 0>pageNumber)){
 
+                    var onlyIsbn =($stateParams.searchQuery.replace(/[^A-Z0-9]/ig, "").match(/^\d+$/));
+                    if(onlyIsbn){
+                        $stateParams.searchQuery = onlyIsbn[0];
+                    }
                     var data={
                         'keyword': $stateParams.searchQuery,
                         'page': pageNumber,
@@ -136,7 +140,11 @@
 
 
                 angular.forEach($scope.bookSearchResult,function(book){
-                    (book.lowestOnlinePricePromise = bookService.getLowestOnlinePrice(book.bookIsbn)).then(function(response){
+                    var data = {
+                        isbn:book.bookAsin,
+                        ean: book.bookEan
+                    };
+                    (book.lowestOnlinePricePromise = bookService.getLowestOnlinePrice(data)).then(function(response){
                         book.bookPriceOnlineLowest = response.data.success.successData.bookPriceOnlineLowest;
 //                        calculateLowestPrice(book);
                     }).catch(function(response){
@@ -195,7 +203,7 @@
                 resultBook.lowestOnlinePricePromise.abort("Changing State");
             });
 
-            $state.go("app.bookComparePrice",{asin:book.bookAsin,isbn:book.bookIsbn});
+            $state.go("app.bookComparePrice",{asin:book.bookAsin,isbn:book.bookIsbn,ean:book.bookEan});
         }
         //todo Calculate Lowest Price and change the color to blue "BELOW FUNCTION IS NEEDED"
         /*function calculateLowestPrice(book){

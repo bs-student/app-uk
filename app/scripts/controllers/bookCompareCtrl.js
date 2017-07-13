@@ -17,6 +17,7 @@
 
         $scope.asin = $stateParams.asin;
         $scope.isbn = $stateParams.isbn;
+        $scope.ean = $stateParams.ean;
 
         $scope.contact = _contact;
         $scope.saveToWishList = _saveToWishList;
@@ -47,8 +48,8 @@
 
             //Get Book Data from Amazon
             getAmazonBooks();
-            //Get Book Data from CampusBooks
-            getCampusBooks();
+            //Get Book Data from Ebay and Hive
+            getOnlineBooks();
             //Get Book Deals
             getBookDeals();
             //Get If Wishlisted
@@ -75,15 +76,16 @@
             });
         }
 
-        function getCampusBooks(){
-            var campusBooksData = {
-                isbn: $scope.isbn
+        function getOnlineBooks(){
+            var onlineBooksData = {
+                isbn: $scope.isbn,
+                ean: $scope.ean
             };
-            $scope.onlinePromise = bookService.getSingleBookByIsbnCampusBooks(campusBooksData).then(function (response){
-                if(response.data.success.successData.response.page.offers.condition!=undefined){
-                    $scope.bookConditions =response.data.success.successData.response.page.offers.condition;
-                    $scope.newBooks =response.data.success.successData.response.page.offers.condition[0].offer;
-                    $scope.usedBooks =response.data.success.successData.response.page.offers.condition[1].offer;
+            $scope.onlinePromise = bookService.getSingleBookByEanOnline(onlineBooksData).then(function (response){
+                if(response.data.success!=undefined){
+                    $scope.bookConditions =response.data.success.successData;
+                    $scope.newBooks =response.data.success.successData.New;
+                    $scope.usedBooks =response.data.success.successData.Used;
                     //GET CHEAPEST ONLINE BOOK
                     getCheapestOnlineBook($scope.bookConditions);
                 }
@@ -190,7 +192,7 @@
             if(deal==undefined){
                 responseService.showErrorToast("No Books were found on campus");
             }else{
-                $state.go("app.contact",{deal:deal,asin:$scope.asin,isbn:$scope.isbn});
+                $state.go("app.contact",{deal:deal,asin:$scope.asin,isbn:$scope.isbn,ean:$scope.ean});
             }
 
         }
@@ -251,25 +253,27 @@
         }
 
         function getCheapestOnlineBook(bookConditions){
+
             var books = [];
             var prices = [];
-            angular.forEach(bookConditions[0].offer,function(book){
+            angular.forEach(bookConditions.New,function(book){
                 books.push(book);
-                prices.push(parseFloat(book.total_price));
+                prices.push(parseFloat(book.price));
             });
-            angular.forEach(bookConditions[1].offer,function(book){
+            angular.forEach(bookConditions.Used,function(book){
                 books.push(book);
-                prices.push(parseFloat(book.total_price));
+                prices.push(parseFloat(book.price));
             });
             prices.sort(function(a, b) { return a - b });
 
             angular.forEach(books,function(book){
 
-                if(parseFloat(book.total_price)==prices[0]){
+                if(parseFloat(book.price)==prices[0]){
 
                     $scope.cheapestOnlineBook=book;
                 }
             });
+
             checkAndSetLowestPrice(prices[0]);
 
         }

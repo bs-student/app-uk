@@ -40,7 +40,7 @@
             <div cg-busy="{promise:onlinePromise}"
                  class="col-md-3 padding-right-none padding-left-none border-right-none">
                 <div class="compare-page-top-button middle-button border-left-none">
-                    <a target="_blank" href="{{cheapestOnlineBook.link}}">
+                    <a target="_blank" href="{{cheapestOnlineBook.buyLink}}">
                         <div class="cart-icon-div"></div>
                         Go To Cheapest Online Store
                     </a>
@@ -48,7 +48,7 @@
             </div>
             <div cg-busy="{promise:amazonPromise}" class="col-md-3 padding-left-none">
                 <div class="compare-page-top-button last-button">
-                    <a target="_blank" ui-sref="app.buy_from_amazon({bookOfferId: amazonBook.bookOfferId })">
+                    <a target="_blank" ui-sref="app.buy_from_amazon({bookOfferId: amazonBook.bookOfferId})">
                         <div class="amazon-icon-div"></div>
                         Buy From Amazon
                     </a>
@@ -327,7 +327,7 @@
                 <td ng-show="deal.bookPaymentMethodCashOnExchange && deal.bookPaymentMethodCheque">
                     Cash, Cheque
                 </td>
-                <td>${{deal.bookPriceSell}}</td>
+                <td>£{{deal.bookPriceSell}}</td>
                 <td>
                     <div ng-show="$parent.loggedIn">
                         <button ng-click="contact(deal)" class="myBtn app-btn buy-now-button ">
@@ -424,7 +424,7 @@
                 <td ng-show="deal.bookPaymentMethodCashOnExchange && deal.bookPaymentMethodCheque">
                     Cash, Cheque
                 </td>
-                <td>${{deal.bookPriceSell}}</td>
+                <td>£{{deal.bookPriceSell}}</td>
                 <td>
                     <div ng-show="$parent.loggedIn">
                         <button ng-click="contact(deal)" class="myBtn app-btn buy-now-button ">
@@ -465,48 +465,25 @@
             <thead>
             <tr>
                 <th style="width: 15%;">Online Store</th>
-                <th style="width: 15%;">Available</th>
-                <th style="width: 23%;">Comments</th>
-                <th style="width: 12%;">Shipping</th>
-                <th style="width: 12%;">Price</th>
-                <th style="width: 46%;">Total</th>
+
+                <th style="width: 15%;">Shipping Info</th>
+                <th style="width: 20%;">Shipping Price</th>
+                <th style="width: 20%;">Price</th>
+                <th style="width: 30%;">Total</th>
             </tr>
             </thead>
             <tbody>
             <tr data-ng-repeat="book in newBooks">
-                <td class="store-image-td"><img ng-src="{{book.merchant_image}}"
-                                                alt="{{book.merchant_name}}"></td>
-                <td>{{book.availability_text}}</td>
-                <td>
-                    <div ng-show="book.comments.length<=100"
-                         class="">{{book.comments}}
-                    </div>
-                    <div ng-show="book.comments.length>100" class="">
+                <td class="store-image-td"><img ng-src="{{book.storeImage}}"
+                                                ></td>
 
-
-                        <div ng-show="book.showComments"
-                             class="">{{book.comments}}
-                            <button ng-click="book.showComments=!book.showComments"
-                                    class="myBtn app-btn buy-now-button view-more-button compare-page"><i
-                                    class="fa fa-angle-up"></i></button>
-                        </div>
-                        <div ng-show="!book.showComments"
-                             class="">
-                            {{book.comments.substring(0, 100)}} ...
-                            <button ng-click="book.showComments=!book.showComments"
-                                    class="myBtn app-btn buy-now-button view-more-button compare-page"><i
-                                    class="fa fa-angle-down"></i></button>
-                        </div>
-                    </div>
-
-
-                </td>
-                <td>${{book.shipping_ground}}</td>
-                <td>${{book.price}}</td>
+                <td>{{book.shippingInfo}}</td>
+                <td>£{{book.shippingPrice}}</td>
+                <td>£{{book.price}}</td>
 
                 <td>
-                    ${{book.total_price}} &nbsp;
-                    <a target="_blank" href="{{book.link}}" class="myBtn app-btn buy-now-button ">Buy
+                    £{{book.totalPrice}} &nbsp;
+                    <a target="_blank" href="{{book.buyLink}}" class="myBtn app-btn buy-now-button ">Buy
                         Now</a>
                 </td>
             </tr>
@@ -524,53 +501,30 @@
     <div cg-busy="{promise:onlinePromise}">
         <div class="table-responsive ">
         <table class="table table-striped campus-result-table">
+
             <thead>
             <tr>
                 <th style="width: 15%;">Online Store</th>
-                <th style="width: 15%;">Available</th>
-                <th style="width: 23%;">Comments</th>
-                <th style="width: 12%;">Shipping</th>
-                <th style="width: 12%;">Price</th>
-                <th style="width: 46%;">Total</th>
+                <th style="width: 15%;">Shipping Info</th>
+                <th style="width: 20%;">Shipping Price</th>
+                <th style="width: 20%;">Price</th>
+                <th style="width: 30%;">Total</th>
             </tr>
             </thead>
             <tbody>
             <tr data-ng-repeat="book in usedBooks">
-                <td class="store-image-td"><img ng-src="{{book.merchant_image}}"
-                                                alt="{{book.merchant_name}}"></td>
-                <td>{{book.availability_text}}</td>
-                <td>
-                    <div ng-show="book.comments.length<80"
-                         class="">{{book.comments}}
-                    </div>
-                    <div ng-show="book.comments.length>80" class="">
-
-
-                        <div ng-show="book.showComments"
-                             class="">{{book.comments}}
-                            <button ng-click="book.showComments=!book.showComments"
-                                    class="myBtn app-btn buy-now-button view-less-button compare-page"><i
-                                    class="fa fa-angle-up"></i></button>
-                        </div>
-                        <div ng-show="!book.showComments"
-                             class="">
-                            {{book.comments.substring(0, 80)}} ...
-                            <button ng-click="book.showComments=!book.showComments"
-                                    class="myBtn app-btn buy-now-button view-more-button compare-page"><i
-                                    class="fa fa-angle-down"></i></button>
-                        </div>
-                    </div>
-                </td>
-                <td>${{book.shipping_ground}}</td>
-                <td>${{book.price}}</td>
+                <td class="store-image-td"><img ng-src="{{book.storeImage}}"
+                        ></td>
+                <td>{{book.shippingInfo}}</td>
+                <td>£{{book.shippingPrice}}</td>
+                <td>£{{book.price}}</td>
 
                 <td>
-                    ${{book.total_price}} &nbsp;
-                    <a target="_blank" href="{{book.link}}" class="myBtn app-btn buy-now-button ">Buy
+                    £{{book.totalPrice}} &nbsp;
+                    <a target="_blank" href="{{book.buyLink}}" class="myBtn app-btn buy-now-button ">Buy
                         Now</a>
                 </td>
             </tr>
-
 
             </tbody>
         </table>

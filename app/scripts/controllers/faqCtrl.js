@@ -22,7 +22,7 @@
 
             {
                 tabId: "tab_1",
-                linkText: "student2student.com",
+                linkText: "student2student.co.uk",
                 active: true,
                 faqs: [
                     {
@@ -39,7 +39,7 @@
                     },
                     {
                         question: "Do I need a credit card?",
-                        answer: $sce.trustAsHtml("No! You do not need a credit card for anything on Student 2 Student. Never provide your credit card information to anyone. If someone claims he/she needs the credit card information, please contact Student 2 Student <a href='http://www.student2student.com/contactUs'>here</a>. Never give out your credit card information. Student 2 Student doesn't need it, and neither do members of Student 2 Student.")
+                        answer: $sce.trustAsHtml("No! You do not need a credit card for anything on Student 2 Student. Never provide your credit card information to anyone. If someone claims he/she needs the credit card information, please contact Student 2 Student <a href='http://www.student2student.co.uk/contactUs'>here</a>. Never give out your credit card information. Student 2 Student doesn't need it, and neither do members of Student 2 Student.")
                     }
 
                     ,
@@ -81,7 +81,7 @@
                     },
                     {
                         question: 'What is the "My Sell Page"?',
-                        answer: $sce.trustAsHtml("The \"My Sell Page\" is your personalized page on Student 2 Student. This page can be shared with anyone in the internet. It only lists the textbook you are selling right now. This way you can advertise your own textbooks on Facebook or Twitter, where ever you like. The only thing you need to do is share the URL.<br><br>You have your own URL for the Personal Selling Page: <strong>www.student2student.com/[nickname]</strong><br/>(Ex: Nickname is kittoo12. The Page would then be: <strong>www.student2student.com/kittoo12</strong>")
+                        answer: $sce.trustAsHtml("The \"My Sell Page\" is your personalized page on Student 2 Student. This page can be shared with anyone in the internet. It only lists the textbook you are selling right now. This way you can advertise your own textbooks on Facebook or Twitter, where ever you like. The only thing you need to do is share the URL.<br><br>You have your own URL for the Personal Selling Page: <strong>www.student2student.co.uk/[nickname]</strong><br/>(Ex: Nickname is kittoo12. The Page would then be: <strong>www.student2student.co.uk/kittoo12</strong>")
                     }
 
 
@@ -151,7 +151,7 @@
                             '<img src="dist/images/faq/signup.png" width="100%"><br/><br/>' +
                             '1. Enter Your Full Name <b>(Ex: Joe Miller)</b><br>' +
                             '2. Enter Your Nickname <b>(Ex: Joe.Miller12)</b>. This is the Name other Users on Student 2 Student will see.<br>' +
-                            '3. Enter a valid Email address. <b>(Ex: Joe.Miller12@student2student.com)</b><br>' +
+                            '3. Enter a valid Email address. <b>(Ex: Joe.Miller12@student2student.co.uk)</b><br>' +
                             ' 4. Enter a strong password. It must be a minimum of 6 characters long.<br>' +
                             '5. This is the most important entry. You have to choose the University Campus where you are going to school.<br>' +
                             'Find the University by typing in the <b>University Name, Location, Stateor University URL</b>. When you start typing in the letters, the system will pull a list of' +
@@ -168,11 +168,11 @@
                     {
                         question: "Reset my Password",
                         answer: $sce.trustAsHtml('Did you forget your password? Absolutely no problem.'+
-                        'You can reset your password on the "Sign In - Forgot the Password" page or by <a href="http://www.student2student.com/forgotPassword">Clicking here</a>.<br/><br/>'+
+                        'You can reset your password on the "Sign In - Forgot the Password" page or by <a href="http://www.student2student.co.uk/forgotPassword">Clicking here</a>.<br/><br/>'+
 
                             '<img src="dist/images/faq/forgotPassword.png" width="100%"><br/><br/>' +
 
-                    '1. Enter the email address you used when you registered your account. <b>(Ex: joe.miller12@student2student.com)</b><br/>'+
+                    '1. Enter the email address you used when you registered your account. <b>(Ex: joe.miller12@student2student.co.uk)</b><br/>'+
 
         '2. You will receive an email with the link to reset your password. Be aware that the link only works for a short period of time. Follow the link to Student 2 Student to reset your password.<br/><br/>'+
 
@@ -190,15 +190,15 @@
                 faqs: [
                     {
                         question: "Privacy",
-                        answer: $sce.trustAsHtml('Read our Privacy Policy <a href="http://www.student2student.com/privacyPolicy">here</a>')
+                        answer: $sce.trustAsHtml('Read our Privacy Policy <a href="http://www.student2student.co.uk/privacyPolicy">here</a>')
                     },
                     {
                         question: "Disclaimer",
-                        answer: $sce.trustAsHtml('Read Disclaimer <a href="http://www.student2student.com/disclaimer">here</a>')
+                        answer: $sce.trustAsHtml('Read Disclaimer <a href="http://www.student2student.co.uk/disclaimer">here</a>')
                     },
                     {
                         question: "Condition of Use",
-                        answer: $sce.trustAsHtml('Read Condition of Use <a href="http://www.student2student.com/conditionOfUse">here</a>')
+                        answer: $sce.trustAsHtml('Read Condition of Use <a href="http://www.student2student.co.uk/conditionOfUse">here</a>')
                     }
                 ]
             },
@@ -208,7 +208,7 @@
                 faqs: [
                     {
                         question: "Still have questions?",
-                        answer: $sce.trustAsHtml('You still have questions? Contact us <a href="http://www.student2student.com/contactUs">here</a>')
+                        answer: $sce.trustAsHtml('You still have questions? Contact us <a href="http://www.student2student.co.uk/contactUs">here</a>')
                     }
                 ]
             }
