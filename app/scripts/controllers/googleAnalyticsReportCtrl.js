@@ -5,12 +5,12 @@
     app
         .controller('GoogleAnalyticsReportCtrl', GoogleAnalyticsReportCtrl);
 
-    GoogleAnalyticsReportCtrl.$inject = ['$moment', '$timeout', '$state', 'identityService', 'adminReportService', '$scope', '$filter', '$q', 'ngTableParams', 'responseService', 'SERVER_CONSTANT'];
+    GoogleAnalyticsReportCtrl.$inject = ['$moment', '$timeout', '$state', 'identityService', 'adminReportService', '$scope', '$filter', '$q', 'ngTableParams', 'responseService', 'SERVER_CONSTANT','GOOGLE_ANALYTICS_CONSTANT'];
 
-    function GoogleAnalyticsReportCtrl($moment, $timeout, $state, identityService, adminReportService, $scope, $filter, $q, ngTableParams, responseService, SERVER_CONSTANT) {
+    function GoogleAnalyticsReportCtrl($moment, $timeout, $state, identityService, adminReportService, $scope, $filter, $q, ngTableParams, responseService, SERVER_CONSTANT,GOOGLE_ANALYTICS_CONSTANT) {
 
         $scope.accessTokenGoogleServiceAccount = undefined;
-        $scope.gaViewId = 'ga:129850413';
+        $scope.gaViewId = GOOGLE_ANALYTICS_CONSTANT.GA_ID;
 
         $scope.imageHostPath = SERVER_CONSTANT.IMAGE_HOST_PATH;
         $scope.$parent.main.title = "Google Analytics Report";
