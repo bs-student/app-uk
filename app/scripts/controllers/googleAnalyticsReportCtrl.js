@@ -177,7 +177,7 @@
                 });
 
                 labels = labels.map(function (label) {
-                    return moment(label, 'YYYYMMDD').format('DD-MMM-YYYY');
+                    return moment(label, 'YYYYMMDD').format('dddd,DD-MMM-YYYY');
                 });
 
                 var data = {
