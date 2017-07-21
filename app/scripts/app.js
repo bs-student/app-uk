@@ -512,6 +512,13 @@ var app = angular
                 templateUrl: 'views/admin/report/adminUserReport.html',
                 resolve: adminCheck
             })
+            //AdminUserBrowsingReport
+            .state('app.adminUserBrowsingReport', {
+                url: '^/adminUserBrowsingReport',
+                controller: 'AdminUserBrowsingReportCtrl',
+                templateUrl: 'views/admin/report/adminUserBrowsingReport.html',
+                resolve: adminCheck
+            })
             //AdminUniversityReport
             .state('app.adminUniversityReport', {
                 url: '^/adminUniversityReport',

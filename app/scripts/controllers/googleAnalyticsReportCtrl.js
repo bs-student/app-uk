@@ -197,7 +197,7 @@
                     ]
                 };
 
-                new Chart(makeCanvas('user-line-chart-container'), {
+                new Chart(makeCanvas('user-line-chart-container',300), {
                     type: "line",
                     data: data
                 });
@@ -281,14 +281,18 @@
          * @param {string} id The id attribute of the element to host the canvas.
          * @return {RenderingContext} The 2D canvas context.
          */
-        function makeCanvas(id) {
+        function makeCanvas(id,height) {
             var container = document.getElementById(id);
             var canvas = document.createElement('canvas');
             var ctx = canvas.getContext('2d');
 
             container.innerHTML = '';
             canvas.width = container.offsetWidth;
-            canvas.height = container.offsetHeight;
+            if(height!=undefined){
+                canvas.height = height;
+            }else{
+                canvas.height = container.offsetHeight;
+            }
             container.appendChild(canvas);
 
             return ctx;

@@ -147,6 +147,7 @@ var assets = {
         "app/scripts/controllers/adminUniversityReportCtrl.js",
         "app/scripts/controllers/adminBookDealReportCtrl.js",
         "app/scripts/controllers/googleAnalyticsReportCtrl.js",
+        "app/scripts/controllers/adminUserBrowsingReportCtrl.js",
 
 
         "app/scripts/directives/anchor-scroll.js",

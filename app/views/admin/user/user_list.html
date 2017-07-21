@@ -69,11 +69,14 @@
                             </div>
 
                         </td>
-                        <td data-title="'Full Name'" style="width: 16%;" filter="{ 'fullName': 'text' }">
+                        <td data-title="'Full Name'" style="width: 12%;" filter="{ 'fullName': 'text' }">
                             <span>{{user.fullName}}</span>
                         </td>
-                        <td data-title="'Email'" style="width: 12%;" filter="{ 'email': 'text' }">
+                        <td data-title="'Email'" style="width: 8%;" filter="{ 'email': 'text' }">
                             <span>{{user.email}}</span>
+                        </td>
+                        <td data-title="'Type'" style="width: 8%;" filter="{'userType': 'select'}" filter-data="userType">
+                            <span>{{user.userType}}</span>
                         </td>
                         <td data-title="'Date'" style="width: 10%;" sortable="'registrationDateTime'">
                             <span>{{user.registrationDateTime}}</span>
@@ -139,6 +142,9 @@
                     </td>
                     <td data-title="'Email'" width="200" filter="{ 'email': 'text' }">
                         <span>{{user.email}}</span>
+                    </td>
+                    <td data-title="'Type'" filter="{'userType': 'select'}" filter-data="userType">
+                        <span>{{user.userType}}</span>
                     </td>
                     <td data-title="'University'" width="200" filter="{ 'universityName': 'text' }">
                         <span>{{user.universityName}}</span>

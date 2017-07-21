@@ -1,0 +1,134 @@
+<div class="archive-page-head-banner">
+    <div class="container clearfix">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="header-title">
+                    <text class="uppercase blue-text lato">User Browsing Report</text>
+                    <text class="uppercase orange-text lato"> (Google Analytics)</text>
+                </h1>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<section class="compare-page" id="content">
+
+
+    <div class="content-wrap mid-section">
+
+
+        <div class="section m-0 pt-0 mid-one compare-result-section user-management-sections">
+            <div class="container clearfix quote-container-homepage">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <h1>User Browsing Report</h1>
+                        <h5>
+                            <div class="text-right page-toolbar">
+                                Filter With Date Range:
+                                <a ng-click="alert('eeee')" class="btn btn-lightred no-border"
+                                   daterangepicker="rangeOptions" date-begin="startDate" date-end="endDate">
+                                    <i class="fa fa-calendar"></i>&nbsp;&nbsp;<span>{{startDate}} - {{endDate}}</span>&nbsp;&nbsp;<i
+                                        class="fa fa-angle-down"></i>
+                                </a>
+                                <button ng-click="init()"
+                                        class="btn btn btn-success btn-rounded-20 btn-ef btn-ef-5 btn-ef-5a ">
+                                    <i class="fa fa-search"></i><span> Search</span></button>
+                            </div>
+
+                            Google Analytics Result Showing on Date Range: <b>{{startDate}} - {{endDate}}</b>
+                        </h5>
+                    </div>
+
+                    <div class="col-md-10"></div>
+                    <div class="col-md-2">
+                        <div id="active-users-container"></div>
+                        <br/>
+                        <br/>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <b>Users using which Device Category?</b>
+                            </div>
+                            <div cg-busy="{promise:googleAccessTokenPromise}" class="panel-body">
+                                <div class="Chartjs">
+                                    <figure class="Chartjs-figure" id="user-device-category-pie-chart-container"></figure>
+                                    <ol class="Chartjs-legend" id="user-device-category-pie-chart-legend-container"></ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <b>Users using which Operating Systems?</b>
+                            </div>
+                            <div cg-busy="{promise:googleAccessTokenPromise}" class="panel-body">
+                                <div class="Chartjs">
+                                    <figure class="Chartjs-figure" id="user-os-bar-chart-container"></figure>
+                                    <ol class="Chartjs-legend" id="user-os-bar-chart-legend-container"></ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                               <b>Users using which Browsers?</b>
+                            </div>
+                            <div cg-busy="{promise:googleAccessTokenPromise}" class="panel-body">
+                                <div class="Chartjs">
+                                    <figure class="Chartjs-figure" id="user-browser-bar-chart-container"></figure>
+                                    <ol class="Chartjs-legend" id="user-browser-bar-chart-legend-container"></ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <b>Users using which Mobile Brand?</b>
+                            </div>
+                            <div cg-busy="{promise:googleAccessTokenPromise}" class="panel-body">
+                                <div class="Chartjs">
+                                    <figure class="Chartjs-figure" id="user-device-brand-bar-chart-container"></figure>
+                                    <ol class="Chartjs-legend" id="user-device-brand-bar-chart-legend-container"></ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <b>Users using which Mobile Devices?</b>
+                            </div>
+                            <div cg-busy="{promise:googleAccessTokenPromise}" class="panel-body">
+                                <div class="Chartjs">
+                                    <figure class="Chartjs-figure" id="user-device-bar-chart-container"></figure>
+                                    <ol class="Chartjs-legend" id="user-device-bar-chart-legend-container"></ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</section>
+

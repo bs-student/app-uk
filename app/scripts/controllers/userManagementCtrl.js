@@ -41,6 +41,21 @@
             }
         ];
 
+        $scope.userType = [
+            {
+                'title':"Google",
+                'id':"Google"
+            },
+            {
+                'title':"Facebook",
+                'id':"Facebook"
+            },
+            {
+                'title':"Normal",
+                'id':"Normal"
+            }
+        ];
+
         $scope.activationStatus = [
             {
                 'title':"Activated",
@@ -69,7 +84,8 @@
                         username: '',
                         email: '',           // initial filter
                         fullName: '',
-                        enabled: ''
+                        enabled: '',
+                        userType:''
                     },
                     sorting: {
                         registrationDateTime: 'desc'// initial sorting
@@ -91,6 +107,7 @@
                     "emailQuery": params.filter().email,
                     "fullNameQuery": params.filter().fullName,
                     "enabledQuery": params.filter().enabled,
+                    "typeQuery": params.filter().userType,
                     "pageNumber": params.page(),
                     "pageSize": params.count(),
                     "sort":params.sorting()
@@ -131,7 +148,8 @@
                         fullName:'',
                         universityName:'',
                         campusName:'',
-                        enabled:''// initial filter
+                        enabled:'',// initial filter
+                        userType:''
                     },
                     sorting: {
                         registrationDateTime: 'desc'     // initial sorting
@@ -155,6 +173,7 @@
                     "universityNameQuery": params.filter().universityName,
                     "campusNameQuery": params.filter().campusName,
                     "enabledQuery": params.filter().enabled,
+                    "typeQuery": params.filter().userType,
                     "pageNumber": params.page(),
                     "pageSize": params.count(),
                     "sort":params.sorting()
