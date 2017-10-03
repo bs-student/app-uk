@@ -149,20 +149,11 @@
                 'end-date': $scope.endDateGoogleFormat
             });
 
-            var cityUsaQueryData = query({
+            var cityUkQueryData = query({
                 'ids': $scope.gaViewId,
                 'dimensions': 'ga:region,ga:country',
                 'metrics': 'ga:users',
-                'filters': 'ga:country==United States',
-                'start-date': $scope.startDateGoogleFormat,
-                'end-date': $scope.endDateGoogleFormat
-            });
-
-            var cityCanadaQueryData = query({
-                'ids': $scope.gaViewId,
-                'dimensions': 'ga:region,ga:country',
-                'metrics': 'ga:users',
-                'filters': 'ga:country==Canada',
+                'filters': 'ga:country==United Kingdom',
                 'start-date': $scope.startDateGoogleFormat,
                 'end-date': $scope.endDateGoogleFormat
             });
@@ -204,53 +195,29 @@
                 generateLegend('user-line-chart-legend-container', data.datasets);
             });
 
-            Promise.all([cityUsaQueryData]).then(function (results) {
+            Promise.all([cityUkQueryData]).then(function (results) {
                 $scope.usaRegionMapData = results[0].rows.filter(function(row){ if(row[0] != "(not set)") return row;});
                 $scope.usaRegionMapData =  $scope.usaRegionMapData.map(function (row) {
                     return [row[0], parseInt(row[2])];
                 });
                 $scope.usaRegionMapData.unshift(['State', 'User Visits']);
-                google.charts.setOnLoadCallback(drawUsaRegionsMap);
+                google.charts.setOnLoadCallback(drawUkRegionsMap);
             });
-
-            Promise.all([cityCanadaQueryData]).then(function (results) {
-                $scope.canadaRegionMapData = results[0].rows.filter(function(row){ if(row[0] != "(not set)") return row;});
-                $scope.canadaRegionMapData =  $scope.canadaRegionMapData.map(function (row) {
-                    return [row[0], parseInt(row[2])];
-                });
-                $scope.canadaRegionMapData.unshift(['State', 'User Visits']);
-                google.charts.setOnLoadCallback(drawCanadaRegionsMap);
-            });
-
 
         }
 
         google.charts.load('current', {'packages': ['geochart']});
 
-        function drawUsaRegionsMap() {
+        function drawUkRegionsMap() {
 
             var data = google.visualization.arrayToDataTable($scope.usaRegionMapData);
 
             var options = {
-                region: 'US',
+                region: 'GB',
                 resolution: 'provinces'
             };
 
-            var chart = new google.visualization.GeoChart(document.getElementById('usa_regions_div'));
-
-            chart.draw(data, options);
-        }
-
-        function drawCanadaRegionsMap() {
-
-            var data = google.visualization.arrayToDataTable($scope.canadaRegionMapData);
-
-            var options = {
-                region: 'CA',
-                resolution: 'provinces'
-            };
-
-            var chart = new google.visualization.GeoChart(document.getElementById('canada_regions_div'));
+            var chart = new google.visualization.GeoChart(document.getElementById('uk_regions_div'));
 
             chart.draw(data, options);
         }
