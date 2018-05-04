@@ -3,11 +3,11 @@
     'use strict';
 
     app
-        .factory('tokenHeaderService', tokenHeaderService);
+        .factory('headerTokenService', headerTokenService);
 
-    tokenHeaderService.$inject = ['SERVER_CONSTANT', 'API_CLIENT_CONSTANT', 'ACCESS_TOKEN_CONSTANT', 'apiService'];
+    headerTokenService.$inject = ['SERVER_CONSTANT', 'WEB_APP_CONFIG_CONSTANT'];
 
-    function tokenHeaderService(SERVER_CONSTANT, API_CLIENT_CONSTANT, ACCESS_TOKEN_CONSTANT, apiService) {
+    function headerTokenService(SERVER_CONSTANT, WEB_APP_CONFIG_CONSTANT) {
 
         return {
             generateHeaderToken: _generateHeaderToken
@@ -15,15 +15,12 @@
 
         function _generateHeaderToken() {
             var time = new Date();
-            var oldTime = time;
-            time.setSeconds((((time.getSeconds() + 30)*6546)-2500));
-            console.log(oldTime.getTime());
-            console.log(time.getTime());
-            // var timeBase64 = btoa(time.getTime().toString());
-            // return {
-            //     timestamp:
-            // }
-            // return (CryptoJS.HmacSHA256(timeBase64,API_CLIENT_CONSTANT.CLIENT_SECRET).toString());
+            var timeData = btoa(parseInt(time.getTime() / 6546 - 2500).toString());
+            return {
+                "Timestamp": parseInt(time.getTime() / 6546 - 2500).toString(),
+                "Request-Source": WEB_APP_CONFIG_CONSTANT.SOURCE_TYPE,
+                "Header-Token": (CryptoJS.HmacSHA256(timeData, WEB_APP_CONFIG_CONSTANT.API_KEY).toString())
+            }
         }
 
     }

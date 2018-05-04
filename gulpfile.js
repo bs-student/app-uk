@@ -39,7 +39,8 @@ var assets = {
         "bower_components/angular-socialshare/dist/angular-socialshare.js",
         "bower_components/ngSlimscroll/src/js/ngSlimscroll.js",
         "bower_components/chart.js/dist/Chart.js",
-        "bower_components/angular-chart.js/dist/angular-chart.js"
+        "bower_components/angular-chart.js/dist/angular-chart.js",
+        "bower_components/crypto-js/crypto-js.js"
 
 
 
@@ -205,6 +206,7 @@ var assets = {
         "app/scripts/services/adminLogService.js",
         "app/scripts/services/adminDatabaseService.js",
         "app/scripts/services/adminReportService.js",
+        "app/scripts/services/headerTokenService.js",
 
         "app/scripts/validators/valEmail.js",
         "app/scripts/validators/valUsername.js",
@@ -271,7 +273,7 @@ gulp.task("js_library_1", function (done) {
         .pipe(plugins.uglify({
             mangle: true
         }))
-        .pipe(plugins.concat('app-uk.library1-0.1.min.js'))
+        .pipe(plugins.concat('app-uk.library1-0.2.min.js'))
         .pipe(gulp.dest('app/dist/js'));
 });
 
@@ -283,7 +285,7 @@ gulp.task("js_library_2", function (done) {
         .pipe(plugins.uglify({
             mangle: true
         }))
-        .pipe(plugins.concat('app-uk.library2-0.1.min.js'))
+        .pipe(plugins.concat('app-uk.library2-0.2.min.js'))
         .pipe(gulp.dest('app/dist/js'));
 });
 
@@ -296,7 +298,7 @@ gulp.task("js_app", function (done) {
         .pipe(plugins.uglify({
             mangle: true
         }))
-        .pipe(plugins.concat('app-uk-0.5.min.js'))
+        .pipe(plugins.concat('app-uk-0.6.min.js'))
         .pipe(gulp.dest('app/dist/js'));
 });
 gulp.task("css_website", function (done) {
