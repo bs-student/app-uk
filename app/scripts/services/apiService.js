@@ -27,7 +27,13 @@
                 config={timeout:defer.promise}
             }
 
-            config.headers = headerTokenService.generateHeaderToken();
+            if(!config.headers){
+                config.headers={};
+            }
+            var headers = headerTokenService.generateHeaderToken();
+            config.headers["Timestamp"] = headers["Timestamp"];
+            config.headers["Request-Source"] = headers["Request-Source"];
+            config.headers["Header-Token"] = headers["Header-Token"];
 
             var promise = $http.get(url, config);
 
@@ -47,7 +53,13 @@
                 config={timeout:defer.promise}
             }
 
-            config.headers = headerTokenService.generateHeaderToken();
+            if(!config.headers){
+                config.headers={};
+            }
+            var headers = headerTokenService.generateHeaderToken();
+            config.headers["Timestamp"] = headers["Timestamp"];
+            config.headers["Request-Source"] = headers["Request-Source"];
+            config.headers["Header-Token"] = headers["Header-Token"];
 
             var promise= $http.post(url, data, config);
 

@@ -298,7 +298,7 @@ gulp.task("js_app", function (done) {
         .pipe(plugins.uglify({
             mangle: true
         }))
-        .pipe(plugins.concat('app-uk-0.6.min.js'))
+        .pipe(plugins.concat('app-uk-0.7.min.js'))
         .pipe(gulp.dest('app/dist/js'));
 });
 gulp.task("css_website", function (done) {
