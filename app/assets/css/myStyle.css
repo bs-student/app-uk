@@ -1061,8 +1061,8 @@ a.notification-a.message-board-a i{
     padding-bottom: 0px;
 }
 .search-banner-row{
-    padding-top: 280px;
-    padding-bottom: 280px;
+    padding-top: 220px;
+    padding-bottom: 230px;
 }
 .search-banner-input-col{
     padding-top: 50px;
@@ -2847,8 +2847,8 @@ a.orange-link:hover,a.orange-link:active,a.orange-link:focus{
 /*         Sell Main Page                    */
 /*********************************************/
 .search-banner-row.sell-main-page-banner-row{
-    padding-top: 180px;
-    padding-bottom: 160px;
+    padding-top: 130px;
+    padding-bottom: 130px;
 }
 .sell-book-page-head-banner{
     background: url("../images/sell_book/sell_book.png") no-repeat;
@@ -2874,10 +2874,10 @@ a.orange-link:hover,a.orange-link:active,a.orange-link:focus{
     vertical-align: top;
 }
 .sell-book-page-head-banner .middle-part{
-    margin-top: 100px;
+    margin-top: 70px;
 }
 .search-banner-input-col.sell-book-form{
-    margin-top: 50px;
+    margin-top: 20px;
     min-height: 155px;
 }
 

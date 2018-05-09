@@ -307,7 +307,7 @@ gulp.task("css_website", function (done) {
     return gulp.src(assets.css_website)
         .pipe(plugins.print())
         .pipe(plugins.cssmin())
-        .pipe(plugins.concat('app-uk-0.1.min.css'))
+        .pipe(plugins.concat('app-uk-0.2.min.css'))
         .pipe(gulp.dest('app/dist/css'));
 });
 
