@@ -259,11 +259,12 @@
         function _logout() {
             securityService.logoutUser().then(function (response) {
                 if (response.data.success.successTitle = "Homepage") {
+                    var username = identityService.getAuthorizedUserData().username;
                     identityService.clearAccessToken();
                     identityService.clearAuthorizedUserData();
                     $scope.username = "Loading...";
                     $scope.loggedIn = false;
-                    responseService.showSuccessToast("Logged Out Successfully");
+                    responseService.showSuccessToast("Goodbye "+username,"You are logged out.");
 
                     if($scope.notificationList!=undefined){
                         $scope.notificationList.$destroy();

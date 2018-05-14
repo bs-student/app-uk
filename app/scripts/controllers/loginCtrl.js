@@ -69,8 +69,12 @@
         }
 
         function showDashboardPage(response) {
-            if (response.data.success.successTitle = "Login Successful") {
-                ($scope.loginPromise = identityService.getInitialAccessToken($scope.user)).then(getAuthorizedUserData).catch(showUnknownError);
+            if(response.data.success){
+                if(response.data.success.successData){
+                    if(response.data.success.successData.registrationStatus==="complete"){
+                        ($scope.loginPromise = identityService.getInitialAccessToken($scope.user)).then(getAuthorizedUserData).catch(showUnknownError);
+                    }
+                }
             }
         }
 
@@ -102,7 +106,7 @@
             storageService.setValue('universityCampusValue',identityService.getAuthorizedUserData().campusId);
 
 
-            responseService.showSuccessToast("Login Successful");
+            responseService.showSuccessToast("Hey, welcome "+identityService.getAuthorizedUserData().username,"You are logged in.");
 
             //Listen To Real Time Time Notification
             eventService.trigger("getContactNotifications",response.data.success.successData.username);
