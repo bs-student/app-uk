@@ -30,7 +30,7 @@
     <uib-tab class="first-tab">
     <uib-tab-heading>
         <div class="people-icon-div"></div>
-        <text>Pending Users</text>
+        <text>Not Verified Users</text>
     </uib-tab-heading>
     <div cg-busy="{promise:userPromise}">
 
@@ -43,7 +43,7 @@
 
 
         <div class="table-responsive">
-            <table ng-table="tableParams" class="table table-striped campus-result-table ">
+            <table ng-table="tableParams" class="table table-striped campus-result-table admin-table">
 
                 <form name="userEditForm" submit-validate >
 
@@ -81,26 +81,28 @@
                         <td data-title="'Date'" style="width: 10%;" sortable="'registrationDateTime'">
                             <span>{{user.registrationDateTime}}</span>
                         </td>
-                        <td data-title="'Verified'" style="width: 13%;" filter="{'enabled': 'select'}" filter-data="verifiedStatus">
-                            <span ng-if="!user.$edit && user.enabled">Yes</span>
-                            <span ng-if="!user.$edit && !user.enabled">No</span>
+                        <td data-title="'Email Verified by User'" style="width: 13%;" filter="{'emailVerified': 'select'}" filter-data="emailVerifiedStatus">
+                            <span>{{user.emailVerified}}</span>
+                        </td>
+                        <td data-title="'Verified by Admin'" style="width: 10%;">
+                            <span ng-if="!user.$edit">{{user.adminVerified}}</span>
 
                             <div ng-if="user.$edit">
-                                <select ng-model="user.enabled" class="form-control mb-10">
-                                    <option ng-selected="user.enabled==true"
-                                            value="true">Activated
+                                <select ng-model="user.adminApproved" class="form-control mb-10">
+                                    <option ng-selected="user.adminApproved==='Yes'"
+                                            value="Yes">Approve
                                     </option>
-                                    <option ng-selected="user.enabled==false"
-                                            value="false">Deactivated
+                                    <option ng-selected="user.adminApproved==='No'"
+                                            value="No">Disapprove
                                     </option>
                                 </select>
                             </div>
 
                         </td>
-                        <td data-title="'Actions'" style="width: 15%">
+                        <td data-title="'Actions'" style="width: 18%">
                             <a ng-if="!user.$edit" href="" ng-click="editRow(user)" class="text-primary text-uppercase text-strong text-sm mr-10">Edit</a>
                             <a ng-if="!user.$edit" target="_blank" ui-sref="app.mySellPage({username:user.username})" class="text-success text-uppercase text-strong text-sm mr-10">Sell Page</a>
-                            <a ng-if="user.$edit" href="" type="submit" ng-click="saveEditedRow(editRowForm.$valid,user)" class="text-success text-uppercase text-strong text-sm mr-10 inline-block" style="margin-top: 7px">Save & Approve</a>
+                            <a ng-if="user.$edit" href="" type="submit" ng-click="saveEditedRow(editRowForm.$valid,user)" class="text-success text-uppercase text-strong text-sm mr-10 inline-block" style="margin-top: 7px">Save</a>
                             <a ng-if="user.$edit" href="" ng-click="cancelEditRow(user)" class="text-danger text-uppercase text-strong text-sm mr-10 inline-block" style="margin-top: 7px">Cancel</a>
                         </td>
                     </tr>
@@ -119,12 +121,12 @@
     <uib-tab class="mid-tab">
     <uib-tab-heading>
         <div class="book-close-icon-div"></div>
-        <text>Approved Users</text>
+        <text>Verified Users</text>
     </uib-tab-heading>
     <div cg-busy="{promise:userPromise}">
 
         <div class="table-responsive">
-        <table ng-table="approvedTableParams" class="table table-striped campus-result-table ">
+        <table ng-table="approvedTableParams" class="table table-striped campus-result-table admin-table">
 
             <form name="userEditForm" submit-validate >
 
@@ -152,24 +154,26 @@
                     <td data-title="'Campus'" width="200" filter="{ 'campusName': 'text' }">
                         <span>{{user.campusName}}</span>
                     </td>
-                    <td data-title="'Status'" width="200" filter="{ 'enabled': 'select' }" filter-data="activationStatus">
+                    <td data-title="'Email Verified by User'" style="width: 13%;" filter="{'emailVerified': 'select'}" filter-data="emailVerifiedStatus">
+                        <span>{{user.emailVerified}}</span>
+                    </td>
+
+                    <td data-title="'Approved Status by Admin'" style="width: 13%;" filter="{'adminApproved': 'select'}" filter-data="adminApprovedStatus">
                         <div ng-if="!user.$edit">
-                            <span ng-if="user.enabled">Activated</span>
-                            <span ng-if="!user.enabled">Deactivated</span>
+                            <span ng-if="user.adminApproved==='Yes'">Approved</span>
+                            <span ng-if="user.adminApproved==='No'">Disapproved</span>
 
                         </div>
-
                         <div ng-if="user.$edit">
-                            <select ng-model="user.enabled" class="form-control mb-10">
-                                <option ng-selected="user.enabled==true"
-                                        value="true">Activated
+                            <select ng-model="user.adminApproved" class="form-control mb-10">
+                                <option ng-selected="user.adminApproved=='Yes'"
+                                        value="Yes">Approve
                                 </option>
-                                <option ng-selected="user.enabled==false"
-                                        value="false">Deactivated
+                                <option ng-selected="user.adminApproved=='No'"
+                                        value="No">Disapprove
                                 </option>
                             </select>
                         </div>
-
                     </td>
                     <td data-title="'Date'" style="width: 10%;" sortable="'registrationDateTime'">
                         <span>{{user.registrationDateTime}}</span>
@@ -202,7 +206,7 @@
 
             <div ui-view="addUserView" ></div>
             <div class="table-responsive">
-            <table ng-table="adminTableParams" class="table table-striped campus-result-table ">
+            <table ng-table="adminTableParams" class="table table-striped campus-result-table admin-table">
 
                 <form name="userEditForm" submit-validate >
 
@@ -221,24 +225,22 @@
                             <span>{{user.email}}</span>
                         </td>
 
-                        <td data-title="'Status'" width="200">
+                        <td data-title="'Approved Status by Admin'" width="200" >
                             <div ng-if="!user.$edit">
-                                <span ng-if="user.enabled">Activated</span>
-                                <span ng-if="!user.enabled">Deactivated</span>
+                                <span ng-if="user.adminApproved==='Yes'">Approved</span>
+                                <span ng-if="user.adminApproved==='No'">Disapproved</span>
 
                             </div>
-
                             <div ng-if="user.$edit">
-                                <select ng-model="user.enabled" class="form-control mb-10">
-                                    <option ng-selected="user.enabled==true"
-                                            value="true">Activated
+                                <select ng-model="user.adminApproved" class="form-control mb-10">
+                                    <option ng-selected="user.adminApproved=='Yes'"
+                                            value="Yes">Approve
                                     </option>
-                                    <option ng-selected="user.enabled==false"
-                                            value="false">Deactivated
+                                    <option ng-selected="user.adminApproved=='No'"
+                                            value="No">Disapprove
                                     </option>
                                 </select>
                             </div>
-
                         </td>
 
                         <td data-title="'Actions'" width="200">

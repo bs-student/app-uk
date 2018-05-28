@@ -30,14 +30,25 @@
         $scope.approvedUsers=[];
         $scope.adminUsers=[];
 
-        $scope.verifiedStatus = [
+        $scope.emailVerifiedStatus = [
             {
                 'title':"Yes",
-                'id':true
+                'id':"Yes"
             },
             {
                 'title':"No",
-                'id':false
+                'id':"No"
+            }
+        ];
+
+        $scope.adminApprovedStatus = [
+            {
+                'title':"Approved",
+                'id':"Yes"
+            },
+            {
+                'title':"Disapproved",
+                'id':"No"
             }
         ];
 
@@ -56,17 +67,6 @@
             }
         ];
 
-        $scope.activationStatus = [
-            {
-                'title':"Activated",
-                'id':true
-            },
-            {
-                'title':"Deactivated",
-                'id':false
-            }
-        ]
-
         init();
 
         function init(){
@@ -84,7 +84,7 @@
                         username: '',
                         email: '',           // initial filter
                         fullName: '',
-                        enabled: '',
+                        emailVerified: '',
                         userType:''
                     },
                     sorting: {
@@ -103,10 +103,10 @@
 
                 var queryData =
                 {
-                    "searchQuery": params.filter().username,
+                    "usernameQuery": params.filter().username,
                     "emailQuery": params.filter().email,
                     "fullNameQuery": params.filter().fullName,
-                    "enabledQuery": params.filter().enabled,
+                    "emailVerifiedQuery": params.filter().emailVerified,
                     "typeQuery": params.filter().userType,
                     "pageNumber": params.page(),
                     "pageSize": params.count(),
@@ -148,7 +148,8 @@
                         fullName:'',
                         universityName:'',
                         campusName:'',
-                        enabled:'',// initial filter
+                        emailVerified:'',
+                        adminApproved:'',
                         userType:''
                     },
                     sorting: {
@@ -167,12 +168,13 @@
 
                 var queryData =
                 {
-                    "searchQuery": params.filter().username,
+                    "usernameQuery": params.filter().username,
                     "emailQuery": params.filter().email,
                     "fullNameQuery": params.filter().fullName,
                     "universityNameQuery": params.filter().universityName,
                     "campusNameQuery": params.filter().campusName,
-                    "enabledQuery": params.filter().enabled,
+                    "emailVerifiedQuery": params.filter().emailVerified,
+                    "adminApprovedQuery": params.filter().adminApproved,
                     "typeQuery": params.filter().userType,
                     "pageNumber": params.page(),
                     "pageSize": params.count(),
@@ -229,7 +231,7 @@
 
                 var queryData =
                 {
-                    "searchQuery": params.filter().username,
+                    "usernameQuery": params.filter().username,
                     "emailQuery": params.filter().email,
                     "pageNumber": params.page(),
                     "pageSize": params.count(),
@@ -265,23 +267,21 @@
         function _editRow(row){
             row.$edit = true;
             row.usernameOnEdit = row.username ;
-            row.statusOnEdit = row.enabled;
+            row.adminVerifiedOnEdit = row.adminVerified;
+            row.adminApprovedOnEdit = row.adminApproved;
         }
         function _cancelEditRow(row){
             row.$edit = false;
             row.username =  row.usernameOnEdit;
-            row.enabled = row.statusOnEdit;
+            row.adminVerified = row.adminVerifiedOnEdit;
+            row.adminApproved = row.adminApprovedOnEdit;
         }
 
         function _saveEditedRow(valid,row){
 
             if(valid){
                 row.$edit=false;
-                if(row.enabled=="true"){
-                    row.enabled=true;
-                }else if(row.enabled=="false"){
-                    row.enabled=false;
-                }
+                row.adminVerified = "Yes";
                 ($scope.userPromise = adminUserService.saveUpdatedUserDataAdmin(identityService.getAccessToken(),row)).then(function (response) {
                     responseService.showSuccessToast(response.data.success.successTitle, response.data.success.successDescription);
                     $scope.nonApprovedUsers.splice($scope.nonApprovedUsers.indexOf(row),1);

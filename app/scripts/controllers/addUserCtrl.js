@@ -23,6 +23,8 @@
                     email:$scope.user.email,
                     fullName:$scope.user.fullName,
                     adminApproved:"Yes",
+                    adminVerified:"Yes",
+                    emailVerified:"Yes",
                     username:$scope.user.username,
                     new_password: $scope.user.password,
                     confirm_password: $scope.user.passwordConfirm

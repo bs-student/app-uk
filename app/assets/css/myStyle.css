@@ -2307,6 +2307,29 @@ blockquote.green-blockquote{
     text-align: center;
     line-height: 3.5em;
 }
+
+.campus-result-table.table-striped.admin-table > thead > tr > th:nth-of-type(odd) {
+    background: #FF530E;
+    color: #ffffff;
+    font-family: Lato;
+    font-size: 13px;
+    text-align: center;
+    line-height: 1.3em;
+}
+.campus-result-table.table-striped.admin-table > thead > tr > th:nth-of-type(even) {
+    background: #FF530E;
+    color: #ffffff;
+    font-family: Lato;
+    font-size: 13px;
+    text-align: center;
+    line-height: 1.3em;
+}
+.campus-result-table.admin-table td{
+    font-size: 13px;
+}
+.admin-table .profile-image img{
+    margin-bottom: 0px !important;
+}
 .campus-result-table td{
     text-align: center;
     font-family: "Lato", "Arial", sans-serif;
