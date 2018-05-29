@@ -3357,6 +3357,9 @@ a.orange-link:hover,a.orange-link:active,a.orange-link:focus{
 .padding-top-20{
     padding-top: 20px;
 }
+.padding-top-10{
+    padding-top: 10px;
+}
 @media only screen and (max-width: 479px) {
     .min-height-125{
         min-height: 125px;

@@ -447,7 +447,7 @@
 
                                 <div class="col-md-4 col-sm-4 col-xs-4 text-right min-height-125">
                                     <div class="vertical-align-middle">
-                                    <text class="px-16 lato uppercase"><strong>Text available to public :</strong></text>
+                                        <text tooltip-placement="top" tooltip-class="tooltip-class" uib-tooltip="The book will be shown to users even they are not logged in or from your university, but only students from your campus can contact you." class="orange-text"><i class="fa fa-info-circle" aria-hidden="true"></i></text><text class="px-16 lato uppercase"><strong>Text available to public :</strong></text>
                                         </div>
                                 </div>
 
@@ -522,7 +522,7 @@
                             </div>
                             <div class="row">
 
-                                <div class="col-md-4 col-sm-4 col-xs-4 text-right padding-top-20 min-height-125">
+                                <div class="col-md-4 col-sm-4 col-xs-4 text-right padding-top-10 min-height-125">
                                     <div class="vertical-align-middle">
                                     <text class="px-16 lato uppercase"><strong>Payment Method :</strong></text>
                                         </div>
@@ -531,33 +531,18 @@
                                 <div class="col-md-8 col-sm-8 col-xs-8 min-height-125">
                                     <div class="vertical-align-middle">
                                     <div ng-class="{
-
-                                    'has-error' :   (step3.cashPaymentMethod.$invalid && !step3.cashPaymentMethod.$pristine) ||
-                                                    (step3.chequePaymentMethod.$invalid && !step3.chequePaymentMethod.$pristine),
-
-                                    'has-success' :   (step3.chequePaymentMethod.$valid && !step3.chequePaymentMethod.$pristine) ||
-                                                      (step3.chequePaymentMethod.$valid && !step3.chequePaymentMethod.$pristine)}">
+                                        'has-error' :   (step3.cashPaymentMethod.$invalid && !step3.cashPaymentMethod.$pristine),
+                                        'has-success' :   (step3.cashPaymentMethod.$valid && !step3.cashPaymentMethod.$pristine)
+                                    }">
 
                                         <label class="checkbox checkbox-custom">
                                             <input type="checkbox"
-                                                   ng-required="
-
-                                                       !(book.paymentMethodCashOnExchange || book.paymentMethodCheque)
-
-                                                       "
+                                                   ng-required="!(book.paymentMethodCashOnExchange)"
                                                    name="cashPaymentMethod" ng-model="book.paymentMethodCashOnExchange" ><i></i> Cash on Exchange
                                         </label>
 
-                                        <label class="checkbox checkbox-custom">
-                                            <input type="checkbox" ng-required="
-
-                                                       !(book.paymentMethodCashOnExchange || book.paymentMethodCheque)
-
-                                                       " name="chequePaymentMethod" ng-model="book.paymentMethodCheque" ><i></i> Cheque
-                                        </label>
                                         <p class="help-block">
-                                            <span ng-show=" (step3.cashPaymentMethod.$invalid && !step3.cashPaymentMethod.$pristine) ||
-                                                    (step3.chequePaymentMethod.$invalid && !step3.chequePaymentMethod.$pristine)">You have to choose at least one payment method.</span>
+                                            <span ng-show=" (step3.cashPaymentMethod.$invalid && !step3.cashPaymentMethod.$pristine)">You have to choose at least one payment method.</span>
 
                                         </p>
 
