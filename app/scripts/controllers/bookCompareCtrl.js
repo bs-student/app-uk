@@ -258,17 +258,17 @@
             var prices = [];
             angular.forEach(bookConditions.New,function(book){
                 books.push(book);
-                prices.push(parseFloat(book.price));
+                prices.push(parseFloat(book.totalPrice));
             });
             angular.forEach(bookConditions.Used,function(book){
                 books.push(book);
-                prices.push(parseFloat(book.price));
+                prices.push(parseFloat(book.totalPrice));
             });
             prices.sort(function(a, b) { return a - b });
 
             angular.forEach(books,function(book){
 
-                if(parseFloat(book.price)==prices[0]){
+                if(parseFloat(book.totalPrice)==prices[0]){
 
                     $scope.cheapestOnlineBook=book;
                 }
